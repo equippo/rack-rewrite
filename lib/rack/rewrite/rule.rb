@@ -254,7 +254,9 @@ module Rack
         end
 
         def redirect_message(location)
-          %Q(Redirecting to <a href="#{location}">#{location}</a>)
+          # To prevent potential XSS issues, do not write any html body
+          # see: https://github.com/jtrupiano/rack-rewrite/issues/76
+          ''
         end
     end
   end
